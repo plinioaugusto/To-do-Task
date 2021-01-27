@@ -1,4 +1,4 @@
-export class Todo{
+export class Tarefa{
 
 constructor(
     public id: Number,

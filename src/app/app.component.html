@@ -1,13 +1,13 @@
 <h1 class="title animate__animated animate__jackInTheBox"> {{title}}</h1>
 
 <ul class="animate__animated animate__flipInX" *ngIf="modo=='list'">
-  <p class="text-center"><smal *ngIf="todos.length==0">Você não tem nenhuma tarefa hoje</smal> </p>
+  <p class="text-center"><smal *ngIf="tarefas.length==0">Você não tem nenhuma tarefa hoje</smal> </p>
 
-  <li *ngFor="let todo of todos">
-    {{todo.id}} {{todo.title}} |
-    <button *ngIf="!todo.done" (click)="concluido(todo)"><i class="far fa-check-circle"></i></button> |
-    <button *ngIf="todo.done"  (click)="pendente(todo)"><i class="fas fa-check-circle"></i></button> |
-    <button (click)="remove(todo)"><i class="far fa-trash-alt"></i></button></li>
+  <li *ngFor="let tarefa of tarefas">
+    {{tarefa.id}} {{tarefa.title}} |
+    <button *ngIf="!tarefa.done" (click)="concluido(tarefa)"><i class="far fa-check-circle"></i></button> |
+    <button *ngIf="tarefa.done"  (click)="pendente(tarefa)"><i class="fas fa-check-circle"></i></button> |
+    <button (click)="remove(tarefa)"><i class="far fa-trash-alt"></i></button></li>
 </ul>
 
 <div id="modal" *ngIf="modo=='adicionar'" class="animate__animated animate__flipInX">

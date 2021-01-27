@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Todo } from 'src/models/todo.model';
+import { Tarefa } from 'src/models/tarefa.model';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -9,14 +9,14 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class AppComponent {
   public modo: String = 'list';
-  public todos: Todo[] = [];
+  public tarefas: Tarefa[] = [];
   public title: String = 'Minhas Tarefas';
   public form: FormGroup;
   
   adicionar(){
     const title = this.form.controls['title'].value;
-    const id = this.todos.length + 1;
-    this.todos.push(new Todo(id, title, false));
+    const id = this.tarefas.length + 1;
+    this.tarefas.push(new Tarefa(id, title, false));
     this.salvar();
     this.clear();
     this.carregarModo('list');
@@ -39,39 +39,35 @@ export class AppComponent {
     this.carregar();
   }
 
-  alterarTexto(){
-    this.title = 'Teste';
-  }
-
-  remove(todo: Todo){
-    const index = this.todos.indexOf(todo);
+  remove(tarefa: Tarefa){
+    const index = this.tarefas.indexOf(tarefa);
     if (index !== -1){
-      this.todos.splice(index,1);//removendo um intem da lista.
+      this.tarefas.splice(index,1);//removendo um intem da lista.
     }
     this.salvar();
   }
 
-  concluido(todo: Todo){
-      todo.done = true;   
+  concluido(tarefa: Tarefa){
+      tarefa.done = true;   
       this.salvar(); 
   }
 
-  pendente(todo: Todo){
-    todo.done = false; 
+  pendente(tarefa: Tarefa){
+    tarefa.done = false; 
     this.salvar();
   }
 
   salvar(){
-    const dado = JSON.stringify(this.todos);
-    localStorage.setItem('todos', dado);
+    const dado = JSON.stringify(this.tarefas);
+    localStorage.setItem('tarefas', dado);
   }
 
   carregar(){
-    const dado = localStorage.getItem('todos');
+    const dado = localStorage.getItem('tarefas');
     if(dado){
-      this.todos = JSON.parse(dado);
+      this.tarefas = JSON.parse(dado);
     }else{
-      this.todos = [];
+      this.tarefas = [];
     }
   }
 
